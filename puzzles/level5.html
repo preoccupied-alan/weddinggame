@@ -2,6 +2,377 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<!-- puzzle four — where the heart is -->
+<title>V · Do No Harm</title>
+<link rel="stylesheet" href="../assets/shared.css">
+<style>
+  /* ── POOL LABEL — extends .ref-label from shared ── */
+  .pool-label {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--ink3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  /* ── TILE GRID ── */
+  .tile-pool {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 7px;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 14px;
+  }
+
+  /* ── ANSWER ZONE ── */
+  .answer-zone {
+    background: var(--surface);
+    border: 1.5px dashed var(--rule2);
+    border-radius: 8px;
+    padding: 14px;
+    min-height: 88px;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .answer-zone.drag-over {
+    border-color: var(--accent);
+    background: var(--accent3);
+  }
+  .answer-zone.full {
+    border-style: solid;
+    border-color: var(--rule2);
+  }
+
+  .answer-slots {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 7px;
+    min-height: 56px;
+  }
+
+  .answer-placeholder {
+    border: 1px dashed var(--rule2);
+    border-radius: 6px;
+    min-height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--sans);
+    font-size: 10px;
+    color: var(--ink3);
+    letter-spacing: 0.06em;
+  }
+
+  /* ── TILE ── */
+  .tile {
+    background: var(--bg2);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 8px 4px;
+    min-height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--ink2);
+    line-height: 1.3;
+    letter-spacing: 0.01em;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: none;
+    transition: transform 0.12s, background 0.12s, opacity 0.12s;
+    position: relative;
+  }
+  .tile:active { cursor: grabbing; }
+  .tile.dragging { opacity: 0.4; transform: scale(0.96); }
+
+  /* Ghost clone that follows the pointer */
+  .tile.ghost {
+    position: fixed;
+    pointer-events: none;
+    z-index: 1000;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+    transform: scale(1.05);
+    opacity: 0.96;
+    cursor: grabbing;
+  }
+
+  /* Tile placed in answer zone */
+  .tile.in-answer {
+    background: var(--accent3);
+    border-color: var(--accent4);
+    color: var(--ink);
+  }
+  .tile.in-answer::after {
+    content: '×';
+    position: absolute;
+    top: 3px; right: 5px;
+    font-size: 11px;
+    color: var(--ink3);
+    line-height: 1;
+  }
+
+  /* ── SUBMIT SECTION ── */
+  .submit-wrap {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .submit-wrap.visible { display: flex; }
+
+  .btn-submit {
+    width: 100%;
+    background: var(--accent);
+    color: #fff;
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: background 0.15s;
+  }
+  .btn-submit:active { background: var(--accent2); }
+  .btn-submit:disabled { opacity: 0.5; cursor: default; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span class="logo">One Hundred and One</span>
+  <div class="meta">Alan &amp; Lisa · V of VII</div>
+</div>
+
+<main>
+  <div class="lvl-num">V</div>
+  <div class="lvl-title">Do No Harm</div>
+  <div class="rule"></div>
+
+  <div class="prose">
+    Before the Epics and Haikus, there were other dreams.
+  </div>
+
+  <div>
+    <div class="pool-label">Lives that could have been</div>
+    <div class="tile-pool" id="pool"></div>
+  </div>
+
+  <div>
+    <div class="pool-label">Different roads</div>
+    <div class="answer-zone" id="answer-zone">
+      <div class="answer-slots" id="answer-slots">
+        <div class="answer-placeholder">—</div>
+        <div class="answer-placeholder">—</div>
+        <div class="answer-placeholder">—</div>
+        <div class="answer-placeholder">—</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="submit-wrap" id="submit-wrap">
+    <button class="btn-submit" id="submit-btn">Check answer</button>
+    <div class="fb" id="fb"></div>
+    <div class="attempts" id="attempts">attempts: 0</div>
+  </div>
+</main>
+
+<script>
+// ── CONFIG ────────────────────────────────────────────────
+const TILE_LABELS = [
+  'Veterinarian',  'Dermatologist', 'English Teacher','Journalist', 'Actuary',
+  'Paramedic',     'Optometrist',       'Meteorologist',   'Chef',        'Invertebrate Biologist',
+  'Fashion Designer',        'Photographer',     'Calculus Teacher',        'Target Cashier', 'Lawyer',
+  'Pharmacist',       'Owl Handler',    'Stippling Artist',   'Rock Climber',      'Liver Surgeon',
+  'Pilot',          'Sturgeon',      'Choreographer',       'Mechanic',    'Pearl Diver',
+];
+
+// Two 'San Francisco' tiles must both be selected — duplicates count as separate entries.
+const CORRECT_LABELS = ['Veterinarian', 'Calculus Teacher', 'Target Cashier', 'Pharmacist'];
+
+const HINT_TEXT = 'What other jobs could Lisa have wanted?';
+const HINT_THRESHOLD = 5;
+const NEXT_PAGE = 'level6.html';
+
+// ── STATE ─────────────────────────────────────────────────
+let attempts = 0;
+let hintShown = false;
+let answerTiles = [];
+
+// ── BUILD TILES ───────────────────────────────────────────
+const pool = document.getElementById('pool');
+let tileIdCounter = 0;
+const shuffled = [...TILE_LABELS].sort(() => Math.random() - 0.5);
+shuffled.forEach(label => pool.appendChild(makeTile(label)));
+
+function makeTile(label) {
+  const el = document.createElement('div');
+  el.className = 'tile';
+  el.textContent = label;
+  el.dataset.label = label;
+  el.dataset.tid = ++tileIdCounter;
+  bindTile(el);
+  return el;
+}
+
+// ── DRAG (pointer events — mouse + touch) ─────────────────
+let ghost = null, dragged = null, offsetX = 0, offsetY = 0;
+
+function bindTile(el) {
+  el.addEventListener('pointerdown', onPointerDown, { passive: false });
+}
+
+function onPointerDown(e) {
+  if (e.button !== undefined && e.button !== 0) return;
+  e.preventDefault();
+  dragged = e.currentTarget;
+  dragged.setPointerCapture(e.pointerId);
+  dragged.classList.add('dragging');
+
+  const rect = dragged.getBoundingClientRect();
+  ghost = dragged.cloneNode(true);
+  ghost.className = 'tile ghost';
+  ghost.style.width  = rect.width  + 'px';
+  ghost.style.height = rect.height + 'px';
+  ghost.style.left   = rect.left   + 'px';
+  ghost.style.top    = rect.top    + 'px';
+  document.body.appendChild(ghost);
+
+  offsetX = e.clientX - rect.left;
+  offsetY = e.clientY - rect.top;
+
+  dragged.addEventListener('pointermove',   onPointerMove,  { passive: false });
+  dragged.addEventListener('pointerup',     onPointerUp);
+  dragged.addEventListener('pointercancel', onPointerUp);
+}
+
+function onPointerMove(e) {
+  e.preventDefault();
+  if (!ghost) return;
+  ghost.style.left = (e.clientX - offsetX) + 'px';
+  ghost.style.top  = (e.clientY - offsetY) + 'px';
+  const r = document.getElementById('answer-zone').getBoundingClientRect();
+  document.getElementById('answer-zone').classList.toggle('drag-over',
+    e.clientX >= r.left && e.clientX <= r.right &&
+    e.clientY >= r.top  && e.clientY <= r.bottom
+  );
+}
+
+function onPointerUp(e) {
+  if (!dragged || !ghost) return;
+  dragged.removeEventListener('pointermove',   onPointerMove);
+  dragged.removeEventListener('pointerup',     onPointerUp);
+  dragged.removeEventListener('pointercancel', onPointerUp);
+
+  ghost.remove(); ghost = null;
+  dragged.classList.remove('dragging');
+
+  const az = document.getElementById('answer-zone');
+  az.classList.remove('drag-over');
+  const r = az.getBoundingClientRect();
+  const onZone = e.clientX >= r.left && e.clientX <= r.right &&
+                 e.clientY >= r.top  && e.clientY <= r.bottom;
+  const fromAnswer = dragged.classList.contains('in-answer');
+
+  if (onZone && !fromAnswer) {
+    answerTiles.length >= 4 ? shakeEl(dragged) : moveToAnswer(dragged);
+  } else if (!onZone && fromAnswer) {
+    moveToPool(dragged);
+  }
+
+  dragged = null;
+  renderAnswerSlots();
+  updateSubmitVisibility();
+}
+
+// ── MOVE HELPERS ──────────────────────────────────────────
+function moveToAnswer(tile) {
+  tile.classList.add('in-answer');
+  answerTiles.push(tile);
+}
+
+function moveToPool(tile) {
+  tile.classList.remove('in-answer');
+  answerTiles = answerTiles.filter(t => t !== tile);
+  if (tile.parentElement !== pool) pool.appendChild(tile);
+}
+
+function renderAnswerSlots() {
+  const slots = document.getElementById('answer-slots');
+  slots.innerHTML = '';
+  answerTiles.forEach(tile => { tile.classList.add('in-answer'); slots.appendChild(tile); });
+  for (let i = answerTiles.length; i < 4; i++) {
+    const ph = document.createElement('div');
+    ph.className = 'answer-placeholder';
+    ph.textContent = '—';
+    slots.appendChild(ph);
+  }
+  document.getElementById('answer-zone').classList.toggle('full', answerTiles.length === 4);
+}
+
+// ── SUBMIT ────────────────────────────────────────────────
+function updateSubmitVisibility() {
+  document.getElementById('submit-wrap').classList.toggle('visible', answerTiles.length === 4);
+}
+
+document.getElementById('submit-btn').addEventListener('click', () => {
+  // Count label occurrences in selection — handles the duplicate San Francisco correctly
+  const chosenCounts = {};
+  answerTiles.forEach(t => { chosenCounts[t.dataset.label] = (chosenCounts[t.dataset.label] || 0) + 1; });
+  const correctCounts = {};
+  CORRECT_LABELS.forEach(l => { correctCounts[l] = (correctCounts[l] || 0) + 1; });
+  const correct = JSON.stringify(Object.entries(chosenCounts).sort()) ===
+                  JSON.stringify(Object.entries(correctCounts).sort());
+
+  const fb = document.getElementById('fb');
+  attempts++;
+  document.getElementById('attempts').textContent = 'attempts: ' + attempts;
+
+  if (correct) {
+    fb.textContent = '✓ correct';
+    fb.className = 'fb ok';
+    document.getElementById('submit-btn').disabled = true;
+    setTimeout(() => { window.location.href = NEXT_PAGE; }, 700);
+  } else {
+    fb.textContent = 'not quite — try again';
+    fb.className = 'fb err';
+    shakeEl(document.getElementById('answer-zone'));
+    if (attempts >= HINT_THRESHOLD && !hintShown) {
+      hintShown = true;
+      const h = document.createElement('div');
+      h.className = 'fb hint';
+      h.textContent = HINT_TEXT;
+      fb.insertAdjacentElement('afterend', h);
+    }
+  }
+});
+
+function shakeEl(el) {
+  el.classList.remove('shake');
+  void el.offsetWidth;
+  el.classList.add('shake');
+  el.addEventListener('animationend', () => el.classList.remove('shake'), { once: true });
+}
+
+// ── INIT ─────────────────────────────────────────────────
+renderAnswerSlots();
+updateSubmitVisibility();
+</script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>V · First, Do No Harm</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
