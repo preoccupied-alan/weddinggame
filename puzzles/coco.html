@@ -6,6 +6,17 @@
 <title>coco</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/shared.css">
+<style>.btn {
+  display:block; width:100%; max-width:480px;
+  background:var(--accent); color:#fff;
+  font-family:var(--sans); font-size:15px; font-weight:400;
+  letter-spacing:0.04em; padding:16px;
+  border:none; border-radius:8px; cursor:pointer;
+  text-align:center; text-decoration:none;
+  -webkit-tap-highlight-color:transparent;
+  transition:background 0.15s;
+}
+.btn:active { background:var(--accent2); }</style>
 </head>
 <body>
 <div class="topbar">
@@ -23,9 +34,9 @@
   </div>
 
   <div class="prose">
-    Our good boy. He has never met someone he did not immediately love. What single word best describes what he is — what he gives?
+    Our good boy. He has never met someone he did not immediately love. He's so nice that you can just go on from here.
   </div>
-
+<!--
   <div class="input-row">
     <input class="puz-input" type="text" placeholder="one word..." autocomplete="off" autocorrect="off" spellcheck="false" autocapitalize="none">
     <button class="submit">→</button>
@@ -40,6 +51,7 @@ setupPuzzle({
   hint: 'She loves everyone unconditionally. What is the word for that?',
   onSuccess: () => { window.location.href = 'level4.html'; }
 });
-</script>
+</script>-->
+<a class="btn" href="level4.html">Next Puzzle</a>
 </body>
 </html>
