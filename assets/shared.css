@@ -1,0 +1,240 @@
+/* shared.css — One Hundred and One · Alan & Lisa */
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
+
+:root {
+  --bg:       #faf9f7;
+  --bg2:      #f3f1ee;
+  --bg3:      #eceae6;
+  --surface:  #ffffff;
+  --ink:      #1a1916;
+  --ink2:     #4a4844;
+  --ink3:     #9a9793;
+  --rule:     #e2e0db;
+  --rule2:    #ccc9c3;
+  --accent:   #2d5a3d;
+  --accent2:  #1e3d2a;
+  --accent3:  #e8f0ea;
+  --accent4:  #c8dace;
+  --err:      #c0392b;
+  --err2:     #fdf0ef;
+  --serif:    'DM Serif Display', serif;
+  --sans:     'DM Sans', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 300;
+  min-height: 100vh;
+  padding: 0 0 80px;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* TOPBAR */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--rule);
+  background: var(--surface);
+  position: sticky; top: 0; z-index: 100;
+}
+.topbar .logo {
+  font-family: var(--serif);
+  font-size: 16px;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+}
+.topbar .meta {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--ink3);
+  letter-spacing: 0.05em;
+  text-align: right;
+  line-height: 1.6;
+}
+
+/* MAIN */
+main {
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* PUZZLE HEADER */
+.lvl-num {
+  font-family: var(--serif);
+  font-size: 56px;
+  color: var(--rule2);
+  line-height: 1;
+  user-select: none;
+  font-style: italic;
+}
+.lvl-title {
+  font-family: var(--serif);
+  font-size: 28px;
+  color: var(--ink);
+  margin-top: -4px;
+  font-style: italic;
+}
+
+/* DIVIDER */
+.rule {
+  height: 1px;
+  background: var(--rule);
+}
+
+/* CLUE BOX */
+.clue {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 28px 24px;
+  min-height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* PROSE */
+.prose {
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--ink2);
+  line-height: 1.8;
+}
+
+/* REFERENCE BOX */
+.ref-box {
+  background: var(--bg2);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 16px 18px;
+}
+.ref-label {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--ink3);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+/* INPUT */
+.input-row { display: flex; gap: 10px; }
+.puz-input {
+  flex: 1;
+  background: var(--surface);
+  border: 1px solid var(--rule2);
+  border-radius: 6px;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 400;
+  padding: 13px 16px;
+  outline: none;
+  letter-spacing: 0.03em;
+  -webkit-appearance: none;
+  transition: border-color 0.15s;
+}
+.puz-input:focus { border-color: var(--accent); }
+.puz-input::placeholder { color: var(--ink3); }
+
+.submit {
+  background: var(--accent);
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-family: var(--sans);
+  font-size: 18px;
+  font-weight: 300;
+  padding: 0 20px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.15s;
+  letter-spacing: 0.05em;
+}
+.submit:active { background: var(--accent2); }
+
+/* FEEDBACK */
+.fb {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 400;
+  min-height: 18px;
+  letter-spacing: 0.02em;
+}
+.fb.err  { color: var(--err); }
+.fb.ok   { color: var(--accent); }
+.fb.hint { color: var(--ink2); font-style: italic; }
+
+/* ATTEMPTS */
+.attempts {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--ink3);
+  letter-spacing: 0.04em;
+}
+
+/* BROWSER WARNING */
+.browser-warning {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 12px 16px;
+  font-family: var(--sans); font-size: 11px;
+  line-height: 1.7; position: relative;
+}
+.browser-warning.blocking {
+  background: #fef9ec;
+  border-bottom: 1px solid #e8d99a;
+  color: #7a6010;
+}
+.browser-warning.soft {
+  background: var(--bg2);
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink3);
+}
+.bw-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+.bw-msg  { flex: 1; }
+.bw-dismiss {
+  background: none; border: none; color: inherit; cursor: pointer;
+  font-size: 14px; padding: 0 2px; flex-shrink: 0; opacity: 0.5;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* UTILS */
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  20% { transform: translateX(-5px); }
+  40% { transform: translateX(5px); }
+  60% { transform: translateX(-3px); }
+  80% { transform: translateX(3px); }
+}
+.shake { animation: shake 0.32s; }
+@keyframes fadein {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+.fadein { animation: fadein 0.5s ease forwards; }
+
+/* SUCCESS CHIP */
+.chip-ok {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--accent3); color: var(--accent2);
+  font-family: var(--sans); font-size: 11px; font-weight: 500;
+  padding: 5px 12px; border-radius: 99px;
+  letter-spacing: 0.04em;
+}

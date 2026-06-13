@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<!-- /qri/ = "dev" in ROT-13 -->
+<title>Dev Notes — One Hundred and One</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#faf9f7;--bg2:#f3f1ee;--surface:#fff;
+  --ink:#1a1916;--ink2:#4a4844;--ink3:#9a9793;
+  --rule:#e2e0db;--rule2:#ccc9c3;
+  --accent:#2d5a3d;--accent2:#1e3d2a;--accent3:#e8f0ea;
+  --err:#c0392b;
+  --serif:'DM Serif Display',serif;--sans:'DM Sans',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:300;padding:0 0 80px;-webkit-font-smoothing:antialiased;}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;border-bottom:1px solid var(--rule);background:var(--surface);}
+.logo{font-family:var(--serif);font-size:16px;color:var(--ink);font-style:italic;}
+.tag{font-family:var(--sans);font-size:10px;font-weight:500;color:var(--err);letter-spacing:0.08em;text-transform:uppercase;}
+main{padding:32px 24px;display:flex;flex-direction:column;gap:28px;max-width:520px;margin:0 auto;}
+h1{font-family:var(--serif);font-size:28px;color:var(--ink);font-style:italic;}
+.warn{font-family:var(--sans);font-size:12px;font-weight:400;color:var(--err);background:#fdf0ef;border:1px solid #f5c6c3;border-radius:6px;padding:14px 16px;line-height:1.7;}
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:22px;display:flex;flex-direction:column;gap:16px;}
+.card-label{font-family:var(--sans);font-size:10px;font-weight:500;color:var(--ink3);letter-spacing:0.1em;text-transform:uppercase;}
+.m{display:flex;flex-direction:column;gap:6px;padding-bottom:18px;border-bottom:1px solid var(--rule);}
+.m:last-child{border-bottom:none;padding-bottom:0;}
+.m-row{display:flex;gap:12px;align-items:baseline;}
+.m-num{font-family:var(--serif);font-size:18px;color:var(--rule2);font-style:italic;flex-shrink:0;width:36px;}
+.m-title{font-family:var(--serif);font-size:17px;color:var(--ink);font-style:italic;}
+.m-ans{font-family:'Courier Prime',monospace;font-size:11px;color:var(--accent);margin-top:2px;}
+.m-ans em{color:var(--ink2);}
+.m-body{font-family:var(--sans);font-size:12px;font-weight:300;color:var(--ink2);line-height:1.8;}
+.m-hint{font-family:var(--sans);font-size:11px;font-weight:400;color:var(--ink3);font-style:italic;}
+.m-hint::before{content:'Hint (after 5 fails): ';font-style:normal;color:var(--ink3);font-weight:300;}
+.url-log{font-family:'Courier Prime',monospace;font-size:11px;color:var(--ink2);line-height:2.4;border-left:2px solid var(--accent3);padding-left:14px;}
+.url-log span{color:var(--accent);}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <span class="logo">One Hundred and One</span>
+  <span class="tag">Dev — not for guests</span>
+</div>
+<main>
+  <div>
+    <h1>Dev Notes</h1>
+    <div style="font-family:var(--sans);font-size:11px;color:var(--ink3);margin-top:4px;letter-spacing:0.04em;">/qri/ is "dev" in ROT-13 · never linked from the game</div>
+  </div>
+
+  <div class="warn">⚠ Do not share this URL with guests. No server-level protection — security by obscurity only. Add HTTP basic auth if you want stronger protection.</div>
+
+  <div class="card">
+    <div class="card-label">Answer key + mechanics</div>
+
+    <div class="m">
+      <div class="m-row"><span class="m-num">I</span><span class="m-title">The Stubborn One</span></div>
+      <div class="m-ans">answer: <em>sammy</em></div>
+      <div class="m-body">Caesar ROT-3. "VDPBX" — each letter shifted 3 forward, player shifts 3 back to get SAMMY. "ROT · · ·" (three dots) signals the offset. The clue text describes Sammy's personality without naming him.</div>
+      <div class="m-hint">Each letter has been shifted 3 places forward in the alphabet. Shift each one back.</div>
+    </div>
+
+    <div class="m">
+      <div class="m-row"><span class="m-num">II</span><span class="m-title">Where It Began</span></div>
+      <div class="m-ans">answer: <em>davis</em></div>
+      <div class="m-body">Answer hidden in HTML source: &lt;meta name="city" content="davis"&gt; and a comment block with coordinates and "origin: davis". Rendered clue shows [REDACTED] to signal something is missing visually.</div>
+      <div class="m-hint">Look in the source for a meta tag with name="city", and a comment about coordinates.</div>
+    </div>
+
+    <div class="m">
+      <div class="m-row"><span class="m-num">III</span><span class="m-title">The Sweet One</span></div>
+      <div class="m-ans">navigate to: <em>coco.html</em></div>
+      <div class="m-body">Morse: C(−·−·) O(−−−) C(−·−·) O(−−−) = COCO. No input box — player edits URL from level3.html to coco.html. The note explicitly says the name belongs "in the address bar."</div>
+      <div class="m-hint">(no input — URL is the mechanic)</div>
+    </div>
+
+    <div class="m">
+      <div class="m-row"><span class="m-num">IIIb</span><span class="m-title">coco.html</span></div>
+      <div class="m-ans">answer: <em>love</em> (also: sweet, warmth, joy, coco)</div>
+      <div class="m-body">Confirmation page. Asks what Coco represents. Accepts love / sweet / warmth / joy / coco.</div>
+      <div class="m-hint">She loves everyone unconditionally. What is the word for that?</div>
+    </div>
+
+    <div class="m">
+      <div class="m-row"><span class="m-num">IV</span><span class="m-title">Six Strings</span></div>
+      <div class="m-ans">answer: <em>guitar</em> → navigates to guitar.html</div>
+      <div class="m-body">Binary → decimal → ASCII: 01000111=71=G, 01010101=85=U, 01001001=73=I, 01010100=84=T, 01000001=65=A, 01010010=82=R. Answer is also the next filename.</div>
+      <div class="m-hint">First byte: 64 + 4 + 2 + 1 = 71. Find 71 in the ASCII table above.</div>
+    </div>
+
+    <div class="m">
+      <div class="m-row"><span class="m-num">IVb</span><span class="m-title">guitar.html</span></div>
+      <div class="m-ans">answer: <em>ee</em></div>
+      <div class="m-body">Standard tuning E A D G B E — lowest and highest strings are both E. Answer is "ee".</div>
+      <div class="m-hint">The first string and the last string are the same note.</div>
+    </div>
+
+    <div class="m">
+      <div class="m-row"><span class="m-num">V</span><span class="m-title">First, Do No Harm</span></div>
+      <div class="m-ans">answer: <em>lisa</em></div>
+      <div class="m-body">15 colour swatches, one special: #4C4953 at index 7. Decoded as hex ASCII pairs: 4C=L, 49=I, 53=S. The reference table includes 41=A so players can complete LISA. The title references her being a doctor.</div>
+      <div class="m-hint">The special hex code is #4C4953. Pairs: 4C=L, 49=I, 53=S — and her name has one more letter.</div>
+    </div>
+
+    <div class="m">
+      <div class="m-row"><span class="m-num">VI</span><span class="m-title">The Other Half</span></div>
+      <div class="m-ans">answer: <em>alan</em> · unlock key: ?name=alan</div>
+      <div class="m-body">CSS-mirrored text "NALA" reversed = ALAN. Player adds ?name=alan to URL and reloads. JS reads URLSearchParams — page stays locked without the correct key.</div>
+      <div class="m-hint">You already decoded it to get here.</div>
+    </div>
+
+    <div class="m">
+      <div class="m-row"><span class="m-num">VII</span><span class="m-title">One Hundred and One</span></div>
+      <div class="m-ans">answer: <em>together</em></div>
+      <div class="m-body">A1Z26: 20=T, 15=O, 7=G, 5=E, 20=T, 8=H, 5=E, 18=R → TOGETHER. Completing the loop — everything they've been doing in escape rooms and in life. Navigates to ../done.html.</div>
+      <div class="m-hint">T = 20. Work from there. Eight letters.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label">URL map</div>
+    <div class="url-log">
+      <div>index.html</div>
+      <div>→ puzzles/level1.html</div>
+      <div>→ puzzles/level2.html</div>
+      <div>→ puzzles/level3.html <span>(no input — player edits URL)</span></div>
+      <div>→ puzzles/coco.html <span>(manually navigated)</span></div>
+      <div>→ puzzles/level4.html</div>
+      <div>→ puzzles/guitar.html <span>(answer = filename)</span></div>
+      <div>→ puzzles/level5.html</div>
+      <div>→ puzzles/level6.html?name=alan <span>(query string unlock)</span></div>
+      <div>→ puzzles/level7.html</div>
+      <div>→ done.html</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label">Hint system</div>
+    <div style="font-family:var(--sans);font-size:12px;font-weight:300;color:var(--ink2);line-height:1.8;">
+      Hints are invisible until 5 wrong attempts — no button, no indication they exist. After the 5th failure the hint text appears below the feedback line and stays until a correct answer. Threshold: <code style="font-family:'Courier Prime',monospace;color:var(--accent);">HINT_THRESHOLD</code> in assets/shared.js.
+    </div>
+  </div>
+
+  <a href="../index.html" style="font-family:var(--sans);font-size:12px;font-weight:400;color:var(--ink3);">← back to game</a>
+</main>
+</body>
+</html>

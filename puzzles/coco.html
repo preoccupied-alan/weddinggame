@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>coco</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/shared.css">
+</head>
+<body>
+<div class="topbar">
+  <span class="logo">N0T WEDDING</span>
+  <div class="meta">Alan &amp; Lisa · III of VII</div>
+</div>
+<main>
+  <div class="lvl-num">III</div>
+  <div class="lvl-title">The Sweet One</div>
+  <div class="rule"></div>
+
+  <div class="clue" style="flex-direction:column;gap:12px;">
+    <div style="font-family:var(--serif);font-size:44px;color:var(--ink);font-style:italic;text-align:center;animation:fadein 0.8s ease;">Coco</div>
+    <span class="chip-ok">✓ correctly navigated</span>
+  </div>
+
+  <div class="prose">
+    Our good boy. He has never met someone he did not immediately love. What single word best describes what he is — what he gives?
+  </div>
+
+  <div class="input-row">
+    <input class="puz-input" type="text" placeholder="one word..." autocomplete="off" autocorrect="off" spellcheck="false" autocapitalize="none">
+    <button class="submit">→</button>
+  </div>
+  <div class="fb"></div>
+  <div class="attempts">attempts: 0</div>
+</main>
+<script src="../assets/shared.js"></script>
+<script>
+setupPuzzle({
+  answer: ['love', 'sweet', 'warmth', 'coco', 'joy'],
+  hint: 'She loves everyone unconditionally. What is the word for that?',
+  onSuccess: () => { window.location.href = 'level4.html'; }
+});
+</script>
+</body>
+</html>

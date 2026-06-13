@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<!-- puzzle one — the stubborn one -->
+<title>I · The Stubborn One</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/shared.css">
+</head>
+<body>
+<div class="topbar">
+  <span class="logo">N0T WEDDING</span>
+  <div class="meta">Alan &amp; Lisa · I of VII</div>
+</div>
+<main>
+  <div class="lvl-num">I</div>
+  <div class="lvl-title">The Stubborn One</div>
+  <div class="rule"></div>
+
+  <div class="clue">
+    <div style="font-family:var(--serif);font-size:34px;color:var(--ink);letter-spacing:0.12em;text-align:center;font-style:italic;">
+      VDPPB
+    </div>
+    <div style="font-family:var(--sans);font-size:11px;color:var(--ink3);text-align:center;letter-spacing:0.12em;font-weight:400;">
+      ROT · · ·
+    </div>
+  </div>
+
+  <div class="prose">
+    She has opinions... About when breakfast is, how much dinner she gets, and whose side of the sofa is whose. She is not unreasonable. She has simply decided.
+  </div>
+
+  <div class="input-row">
+    <input class="puz-input" type="text" placeholder="who is this?" autocomplete="off" autocorrect="off" spellcheck="false" autocapitalize="none">
+    <button class="submit">→</button>
+  </div>
+  <div class="fb"></div>
+  <div class="attempts">attempts: 0</div>
+</main>
+<script src="../assets/shared.js"></script>
+<script>
+setupPuzzle({
+  answer: 'sammy',
+  hint: 'Each letter has been shifted 3 places forward in the alphabet. Shift each one back.',
+  onSuccess: () => { window.location.href = 'level2.html'; }
+});
+</script>
+</body>
+</html>

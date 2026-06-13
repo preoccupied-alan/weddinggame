@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>IV · Six Strings</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/shared.css">
+<style>
+.bytes { font-family:'Courier Prime',monospace; font-size:12px; line-height:2.4; word-break:break-all; }
+.bytes span:nth-child(odd)  { color:var(--accent); }
+.bytes span:nth-child(even) { color:var(--ink2); }
+.bytes span { margin-right:10px; }
+.ascii-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; font-family:'Courier Prime',monospace; font-size:10px; color:var(--ink2); line-height:2.1; }
+</style>
+</head>
+<body>
+<div class="topbar">
+  <span class="logo">N0T WEDDING</span>
+  <div class="meta">Alan &amp; Lisa · IV of VII</div>
+</div>
+<main>
+  <div class="lvl-num">IV</div>
+  <div class="lvl-title">Make Some Noise</div>
+  <div class="rule"></div>
+
+  <div class="clue" style="flex-direction:column;align-items:flex-start;gap:10px;">
+    <div class="bytes">
+      <span>01000111</span><span>01010101</span><span>01001001</span>
+      <span>01010100</span><span>01000001</span><span>01010010</span>
+    </div>
+    <div style="font-family:var(--sans);font-size:10px;font-weight:400;color:var(--ink3);letter-spacing:0.05em;"></div>
+  </div>
+
+  <div class="prose">
+    
+  </div>
+
+  <!--<div class="ref-box">
+    <div class="ref-label">ASCII reference (decimal)</div>
+    <div class="ascii-grid">
+      <span>65 = A</span><span>66 = B</span><span>67 = C</span><span>68 = D</span>
+      <span>69 = E</span><span>70 = F</span><span>71 = G</span><span>72 = H</span>
+      <span>73 = I</span><span>74 = J</span><span>75 = K</span><span>76 = L</span>
+      <span>77 = M</span><span>78 = N</span><span>79 = O</span><span>80 = P</span>
+      <span>81 = Q</span><span>82 = R</span><span>83 = S</span><span>84 = T</span>
+      <span>85 = U</span><span>86 = V</span><span>87 = W</span><span>88 = X</span>
+      <span>89 = Y</span><span>90 = Z</span>
+    </div>
+  </div>-->
+
+  <div class="prose">
+    
+    
+  </div>
+  <div>                                                                       
+                                                                       
+    HHHHHHHHH     HHHHHHHHH  iiii                            tttt<br>          
+    H:::::::H     H:::::::H i::::i                        ttt:::t<br>          
+    H:::::::H     H:::::::H  iiii                         t:::::t<br>          
+    HH::::::H     H::::::HH                               t:::::t<br>          
+      H:::::H     H:::::H  iiiiiiinnnn  nnnnnnnn    ttttttt:::::ttttttt<br>    
+      H:::::H     H:::::H  i:::::in:::nn::::::::nn  t:::::::::::::::::t<br>    
+      H::::::HHHHH::::::H   i::::in::::::::::::::nn t:::::::::::::::::t<br>    
+      H:::::::::::::::::H   i::::inn:::::::::::::::ntttttt:::::::tttttt<br>    
+      H:::::::::::::::::H   i::::i  n:::::nnnn:::::n      t:::::t<br>          
+      H::::::HHHHH::::::H   i::::i  n::::n    n::::n      t:::::t<br>          
+      H:::::H     H:::::H   i::::i  n::::n    n::::n      t:::::t<br>          
+      H:::::H     H:::::H   i::::i  n::::n    n::::n      t:::::t    tttttt<br>
+    HH::::::H     H::::::HHi::::::i n::::n    n::::n      t::::::tttt:::::t<br>
+    H:::::::H     H:::::::Hi::::::i n::::n    n::::n      tt::::::::::::::t<br>
+    H:::::::H     H:::::::Hi::::::i n::::n    n::::n        tt:::::::::::tt<br>
+    HHHHHHHHH     HHHHHHHHHiiiiiiii nnnnnn    nnnnnn          ttttttttttt<br>  
+                                                                           
+                                                                           
+                                                                           
+                                                                           
+                                                                           
+                                                                           
+  </div>
+  <div class="input-row">
+    <input class="puz-input" type="text" placeholder="the instrument..." autocomplete="off" autocorrect="off" spellcheck="false" autocapitalize="none">
+    <button class="submit">→</button>
+  </div>
+  <div class="fb"></div>
+  <div class="attempts">attempts: 0</div>
+</main>
+<script src="../assets/shared.js"></script>
+<script>
+setupPuzzle({
+  answer: 'guitar',
+  hint: 'First byte: 64 + 4 + 2 + 1 = 71. Find 71 in the table above.',
+  onSuccess: () => { window.location.href = 'guitar.html'; }
+});
+</script>
+</body>
+</html>

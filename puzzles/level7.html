@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<!-- 20.15.7.5.20.8.5.18 -->
+<title>VII · One Hundred and One</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/shared.css">
+</head>
+<body>
+<div class="topbar">
+  <span class="logo">One Hundred and One</span>
+  <div class="meta">Alan &amp; Lisa · VII of VII</div>
+</div>
+<main>
+  <div class="lvl-num">VII</div>
+  <div class="lvl-title">One Hundred and One</div>
+  <div class="rule"></div>
+
+  <div class="clue" style="flex-direction:column;gap:10px;">
+    <div style="font-family:var(--serif);font-size:20px;color:var(--ink);letter-spacing:0.12em;text-align:center;line-height:1.9;font-style:italic;">
+      20 · 15 · 7 · 5 · 20 · 8 · 5 · 18
+    </div>
+    <div style="font-family:var(--sans);font-size:10px;font-weight:400;color:var(--ink3);text-align:center;letter-spacing:0.1em;">A = 1 · B = 2 · · · Z = 26</div>
+  </div>
+
+  <div class="ref-box">
+    <div class="ref-label">The rooms so far</div>
+    <div style="font-family:var(--sans);font-size:12px;font-weight:300;color:var(--ink2);line-height:2.4;">
+      <div style="display:flex;justify-content:space-between;"><span>I</span><span style="color:var(--accent);font-weight:400;">Sammy</span></div>
+      <div style="display:flex;justify-content:space-between;"><span>II</span><span style="color:var(--accent);font-weight:400;">Davis</span></div>
+      <div style="display:flex;justify-content:space-between;"><span>III</span><span style="color:var(--accent);font-weight:400;">Coco → Love</span></div>
+      <div style="display:flex;justify-content:space-between;"><span>IV</span><span style="color:var(--accent);font-weight:400;">Guitar → E E</span></div>
+      <div style="display:flex;justify-content:space-between;"><span>V</span><span style="color:var(--accent);font-weight:400;">Lisa</span></div>
+      <div style="display:flex;justify-content:space-between;"><span>VI</span><span style="color:var(--accent);font-weight:400;">Alan</span></div>
+      <div style="display:flex;justify-content:space-between;"><span>VII</span><span style="color:var(--ink3);">· · ·</span></div>
+    </div>
+  </div>
+
+  <div class="prose">
+    Eight numbers. Eight letters. Think about everything you've uncovered — the dogs, the city, the names, the instrument. What have Alan and Lisa been doing, in escape rooms and in life, this whole time?
+  </div>
+
+  <div class="input-row">
+    <input class="puz-input" type="text" placeholder="the final answer..." autocomplete="off" autocorrect="off" spellcheck="false" autocapitalize="none">
+    <button class="submit">→</button>
+  </div>
+  <div class="fb"></div>
+  <div class="attempts">attempts: 0</div>
+</main>
+<script src="../assets/shared.js"></script>
+<script>
+setupPuzzle({
+  answer: 'together',
+  hint: 'T = 20. Work from there. Eight letters.',
+  onSuccess: () => { window.location.href = '../done.html'; }
+});
+</script>
+</body>
+</html>

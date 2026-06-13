@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>guitar</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/shared.css">
+</head>
+<body>
+<div class="topbar">
+  <span class="logo">One Hundred and One</span>
+  <div class="meta">Alan &amp; Lisa · IV of VII</div>
+</div>
+<main>
+  <div class="lvl-num">IV</div>
+  <div class="lvl-title">Six Strings</div>
+  <div class="rule"></div>
+
+  <div class="clue" style="flex-direction:column;gap:12px;">
+    <div style="font-family:var(--serif);font-size:44px;color:var(--ink);font-style:italic;text-align:center;">guitar</div>
+    <span class="chip-ok">✓ correctly navigated</span>
+  </div>
+
+  <div class="prose">
+    A guitar in standard tuning has six strings. From lowest to highest: E A D G B E. The lowest and the highest share the same note. Give both together as a two-letter answer.
+  </div>
+
+  <div class="ref-box">
+    <div class="ref-label">Standard tuning</div>
+    <div style="font-family:'Courier Prime',monospace;font-size:14px;color:var(--ink);letter-spacing:0.3em;text-align:center;line-height:2.2;padding:4px 0;">
+      E · A · D · G · B · E
+    </div>
+  </div>
+
+  <div class="input-row">
+    <input class="puz-input" type="text" placeholder="two letters..." autocomplete="off" autocorrect="off" spellcheck="false" autocapitalize="none" maxlength="2">
+    <button class="submit">→</button>
+  </div>
+  <div class="fb"></div>
+  <div class="attempts">attempts: 0</div>
+</main>
+<script src="../assets/shared.js"></script>
+<script>
+setupPuzzle({
+  answer: 'ee',
+  hint: 'The first string and the last string are the same note.',
+  onSuccess: () => { window.location.href = 'level5.html'; }
+});
+</script>
+</body>
+</html>

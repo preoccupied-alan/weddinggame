@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<!-- puzzle two — where it began -->
+<!-- origin: davis -->
+<title>II · Where It Began</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/shared.css">
+<meta name="city" content="davis">
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     coordinates: 38.5449° N, 121.7405° W
+     population: two people who didn't know yet
+     origin: davis
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+</head>
+<body>
+<div class="topbar">
+  <span class="logo">N0T WEDDING</span>
+  <div class="meta">Alan &amp; Lisa · II of VII</div>
+</div>
+<main>
+  <div class="lvl-num">II</div>
+  <div class="lvl-title">Where It Began</div>
+  <div class="rule"></div>
+
+  <div class="clue" style="flex-direction:column;align-items:flex-start;gap:6px;">
+    <div style="font-family:var(--sans);font-size:10px;font-weight:500;color:var(--ink3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px;">Location record — redacted</div>
+    <div style="font-family:'Courier Prime',monospace,monospace;font-size:11px;color:var(--ink3);line-height:2;white-space:pre-wrap;">&lt;meta name="city" content="<span style="background:var(--ink3);color:var(--ink3);border-radius:2px;padding:0 4px;">REDACTED</span>"&gt;
+&lt;!-- origin: <span style="background:var(--ink3);color:var(--ink3);border-radius:2px;padding:0 4px;">REDACTED</span> --&gt;
+&lt;!-- population: two people
+     who didn't know yet --&gt;</div>
+  </div>
+
+  <div class="prose">
+    Every story starts somewhere. This one started in a city in California. Let's go back to the source.
+  </div>
+
+
+
+  <div class="input-row">
+    <input class="puz-input" type="text" placeholder="Moo..." autocomplete="off" autocorrect="off" spellcheck="false" autocapitalize="none">
+    <button class="submit">→</button>
+  </div>
+  <div class="fb"></div>
+  <div class="attempts">attempts: 0</div>
+</main>
+<script src="../assets/shared.js"></script>
+<script>
+const el = document.getElementById('source-instr');
+setupPuzzle({
+  answer: 'davis',
+  hint: 'Look in the source for a meta tag with name="city", and a comment about coordinates.',
+  onSuccess: () => { window.location.href = 'level3.html'; }
+});
+</script>
+</body>
+</html>

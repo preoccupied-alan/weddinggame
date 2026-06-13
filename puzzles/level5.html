@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>V · First, Do No Harm</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/shared.css">
+<style>
+.swatch-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:6px; }
+.swatch { aspect-ratio:1; border-radius:4px; cursor:pointer; border:2px solid transparent; transition:transform 0.1s; }
+.swatch:active { transform:scale(1.06); }
+.hex-out { font-family:'Courier Prime',monospace; font-size:13px; color:var(--accent); text-align:center; min-height:22px; letter-spacing:0.08em; margin-top:6px; font-weight:400; }
+.hex-ref { display:grid; grid-template-columns:repeat(2,1fr); gap:2px; font-family:'Courier Prime',monospace; font-size:10px; color:var(--ink2); line-height:2.1; }
+</style>
+</head>
+<body>
+<div class="topbar">
+  <span class="logo">One Hundred and One</span>
+  <div class="meta">Alan &amp; Lisa · V of VII</div>
+</div>
+<main>
+  <div class="lvl-num">V</div>
+  <div class="lvl-title">First, Do No Harm</div>
+  <div class="rule"></div>
+
+  <div class="clue" style="flex-direction:column;gap:12px;">
+    <div style="font-family:var(--sans);font-size:10px;font-weight:500;color:var(--ink3);letter-spacing:0.1em;text-transform:uppercase;align-self:flex-start;">15 colours — one carries a name</div>
+    <div class="swatch-grid" id="swatch-grid"></div>
+    <div class="hex-out" id="hex-out">tap a colour</div>
+  </div>
+
+  <div class="prose">
+    She heals people for a living. Somewhere in this palette, her name is encoded in colour — not as a word, but as pairs of hex digits. Find the one that means something and decode it letter by letter.
+  </div>
+
+  <div class="ref-box">
+    <div class="ref-label">Hex → letter reference</div>
+    <div class="hex-ref">
+      <span>4C = L</span><span>49 = I</span>
+      <span>53 = S</span><span>41 = A</span>
+      <span>42 = B</span><span>43 = C</span>
+      <span>44 = D</span><span>45 = E</span>
+      <span>46 = F</span><span>47 = G</span>
+      <span>48 = H</span><span>4A = J</span>
+    </div>
+  </div>
+
+  <div class="input-row">
+    <input class="puz-input" type="text" placeholder="her name..." autocomplete="off" autocorrect="off" spellcheck="false" autocapitalize="none">
+    <button class="submit">→</button>
+  </div>
+  <div class="fb"></div>
+  <div class="attempts">attempts: 0</div>
+</main>
+<script src="../assets/shared.js"></script>
+<script>
+const SPECIAL = '#4C4953';
+const grid = document.getElementById('swatch-grid');
+const hexOut = document.getElementById('hex-out');
+
+Array.from({length:15},(_,i)=>i).forEach(i => {
+  const cell = document.createElement('div');
+  cell.className = 'swatch';
+  const hex = i===7 ? SPECIAL :
+    '#'+[(Math.floor(Math.random()*160)+40),(Math.floor(Math.random()*160)+40),(Math.floor(Math.random()*160)+40)]
+      .map(v=>v.toString(16).padStart(2,'0')).join('');
+  cell.style.background = hex;
+  cell.addEventListener('click', () => {
+    document.querySelectorAll('.swatch').forEach(s => s.style.border='2px solid transparent');
+    cell.style.border = '2px solid var(--accent)';
+    hexOut.textContent = hex.toUpperCase();
+  });
+  grid.appendChild(cell);
+});
+
+setupPuzzle({
+  answer: 'lisa',
+  hint: 'The special hex code is #4C4953. Pairs: 4C = L, 49 = I, 53 = S — and her name has one more letter (check the reference).',
+  onSuccess: () => { window.location.href = 'level6.html'; }
+});
+</script>
+</body>
+</html>
