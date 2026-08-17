@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<!-- there is no answer box here — the puzzle is the address bar -->
 <title>III · The Sweet One</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/shared.css">
@@ -52,12 +51,17 @@
   </div>
 
   <div class="prose">
-    He is small. He would like to be in your lap, please. All the time
+    He is small. He would like to be in your lap, please. All the time.
   </div>
 
-  
+  <div class="input-row">
+    <input class="puz-input" type="text" placeholder="who is this?" autocomplete="off" autocorrect="off" spellcheck="false" autocapitalize="none">
+    <button class="submit">→</button>
   </div>
+  <div class="fb"></div>
+  <div class="attempts">attempts: 0</div>
 </main>
+
 <script src="../assets/shared.js"></script>
 <script>
 document.getElementById('play-btn').addEventListener('click', () => {
@@ -77,22 +81,12 @@ document.getElementById('play-btn').addEventListener('click', () => {
     t+=LG;
   });
 });
-</script>
-<div class="ref-box"></div><div class="input-row">
-  <input class="puz-input" type="text" placeholder="who is this?" autocomplete="off" autocorrect="off" spellcheck="false" autocapitalize="none">
-  <button class="submit">→</button>
-</div>
-<div class="fb"></div>
-<div class="attempts">attempts: 0</div>
-</main>
-<script src="../assets/shared.js"></script>
-<script>
+
 setupPuzzle({
-answer: 'coco',
-hint: 'Listening is helpful but not strictly necessary',
-onSuccess: () => { window.location.href = 'level4.html'; }
+  answer: 'coco',
+  hint: 'Listening is helpful but not strictly necessary',
+  onSuccess: () => { window.location.href = 'level4.html'; }
 });
 </script>
-</div>
 </body>
 </html>
