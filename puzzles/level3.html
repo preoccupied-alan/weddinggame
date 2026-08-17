@@ -24,7 +24,7 @@
 <body>
 <div class="topbar">
   <span class="logo">N0T WEDDING</span>
-  <div class="meta">Alan &amp; Lisa · III of VI</div>
+  <div class="meta">Alan &amp; Lisa · III of VII</div>
 </div>
 <main>
   <div class="lvl-num">III</div>
@@ -55,11 +55,7 @@
     He is small. He would like to be in your lap, please. All the time
   </div>
 
-  <div class="ref-box">
-    <div class="ref-label">A note on this puzzle</div>
-    <div style="font-family:var(--sans);font-size:13px;font-weight:300;color:var(--ink2);line-height:1.8;">
-      There is no answer box on this page.
-    </div>
+  
   </div>
 </main>
 <script src="../assets/shared.js"></script>
@@ -82,5 +78,21 @@ document.getElementById('play-btn').addEventListener('click', () => {
   });
 });
 </script>
+<div class="ref-box"></div><div class="input-row">
+  <input class="puz-input" type="text" placeholder="who is this?" autocomplete="off" autocorrect="off" spellcheck="false" autocapitalize="none">
+  <button class="submit">→</button>
+</div>
+<div class="fb"></div>
+<div class="attempts">attempts: 0</div>
+</main>
+<script src="../assets/shared.js"></script>
+<script>
+setupPuzzle({
+answer: 'coco',
+hint: 'Listening is helpful but not strictly necessary',
+onSuccess: () => { window.location.href = 'level2.html'; }
+});
+</script>
+</div>
 </body>
 </html>
