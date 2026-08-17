@@ -21,7 +21,7 @@ function showBrowserWarning({ message, type = 'soft' }) {
 }
 
 // ── Puzzle engine ────────────────────────
-const HINT_THRESHOLD = 5;
+const HINT_THRESHOLD = 2;
 
 function setupPuzzle({ answer, hint, onSuccess }) {
   const input   = document.querySelector('.puz-input');
