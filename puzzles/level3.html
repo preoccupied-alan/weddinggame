@@ -31,12 +31,6 @@
   <div class="rule"></div>
 
   <div class="clue" style="flex-direction:column;gap:18px;">
-    <div class="morse">
-      −·−·<br>
-      −−−<br>
-      −·−·<br>
-      −−−
-    </div>
     <button class="play-btn" id="play-btn">▶ Play audio</button>
   </div>
 
@@ -84,7 +78,7 @@ document.getElementById('play-btn').addEventListener('click', () => {
 
 setupPuzzle({
   answer: 'coco',
-  hint: 'Listening is helpful but not strictly necessary',
+  hint: 'Listening is helpful',
   onSuccess: () => { window.location.href = 'level4.html'; }
 });
 </script>
