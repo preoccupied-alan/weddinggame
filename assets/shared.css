@@ -18,7 +18,7 @@
   --err:      #c0392b;
   --err2:     #fdf0ef;
   --serif:    'DM Serif Display', serif;
-  --sans:     'DM Sans', sans-serif;
+  --sans:     'DM Sans', serif;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
