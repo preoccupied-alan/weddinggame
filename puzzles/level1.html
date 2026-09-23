@@ -2,48 +2,53 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<!-- puzzle one — the stubborn one -->
-<title>I · The Stubborn One</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>I · N0T WEDDING</title>
 <link rel="stylesheet" href="../assets/shared.css">
 </head>
 <body>
+
 <div class="topbar">
   <span class="logo">N0T WEDDING</span>
   <div class="meta">Alan &amp; Lisa · I of VI</div>
 </div>
+
 <main>
-  <div class="lvl-num">I</div>
-  <div class="lvl-title">The Stubborn One</div>
+  <div class="lvl-num">1</div>
+  <div class="lvl-title">She's a good girl</div>
   <div class="rule"></div>
 
+  <div class="prose">
+    She is stubborn, a little cranky, and completely irreplaceable.
+    She showed up first, and she's been running the household ever since.
+  </div>
+
   <div class="clue">
-    <div style="font-family:var(--serif);font-size:34px;color:var(--ink);letter-spacing:0.12em;text-align:center;font-style:italic;">
+    <div style="font-family: var(--serif); font-size: 32px; letter-spacing: 0.18em; color: var(--ink);">
       VDPPBWRIX
-    </div>
-    <div style="font-family:var(--sans);font-size:11px;color:var(--ink3);text-align:center;letter-spacing:0.12em;font-weight:400;">
-        
     </div>
   </div>
 
-  <div class="prose">
-    She has opinions... About when breakfast is, how much dinner she gets, and whose side of the sofa is whose. She is not unreasonable. She has simply decided.
+  <div class="prose" style="color: var(--ink3); font-size: 12px;">
+    attempts: —
   </div>
 
   <div class="input-row">
-    <input class="puz-input" type="text" placeholder="who is this?" autocomplete="off" autocorrect="off" spellcheck="false" autocapitalize="none">
+    <input class="puz-input" type="text" placeholder="who is she?" autocomplete="off" autocorrect="off" spellcheck="false">
     <button class="submit">→</button>
   </div>
   <div class="fb"></div>
   <div class="attempts">attempts: 0</div>
 </main>
+
 <script src="../assets/shared.js"></script>
 <script>
-setupPuzzle({
-  answer: ['sammytofu', 'sammy tofu'],
-  hint: 'Hint: There seems to be a frame shift error!',
-  onSuccess: () => { window.location.href = 'level2.html'; }
+document.addEventListener('DOMContentLoaded', () => {
+  setupPuzzle({
+    answer: ['sammytofu', 'sammy tofu'],
+    hint: 'Hint: There seems to be a frame shift error!',
+    onSuccess: () => { window.location.href = 'level2.html'; }
+  });
 });
 </script>
 </body>
