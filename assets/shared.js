@@ -40,7 +40,7 @@ function setupPuzzle({ answer, hint, onSuccess }) {
   }
 
   function check() {
-    const val = input.value.trim().toLowerCase();
+    const val = input.value.trim().toLowerCase().replace(/\s+/g, ' ');
     attempts++;
     if (attEl) attEl.textContent = 'attempts: ' + attempts;
     const answers = Array.isArray(answer) ? answer : [answer];
